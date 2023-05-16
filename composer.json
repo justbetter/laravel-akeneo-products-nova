@@ -1,0 +1,61 @@
+{
+    "name": "justbetter/laravel-akeneo-products-nova",
+    "description": "Laravel Nova integration for justbetter/laravel-akeneo-products",
+    "type": "package",
+    "license": "MIT",
+    "homepage": "https://github.com/justbetter/laravel-akeneo-products-nova",
+    "authors": [
+        {
+            "name": "Ramon Rietdijk",
+            "email": "ramon@justbetter.nl",
+            "role": "Developer"
+        },
+        {
+            "name": "Vincent Boon",
+            "email": "vincent@justbetter.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "justbetter/laravel-akeneo-products": "^1.0",
+        "laravel/nova": "^4.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\AkeneoProductsNova\\": "src"
+        }
+    },
+    "scripts": {
+        "analyse": "phpstan",
+        "style": "pint --test",
+        "quality": [
+            "@analyse",
+            "@style"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JustBetter\\AkeneoProductsNova\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ]
+}
