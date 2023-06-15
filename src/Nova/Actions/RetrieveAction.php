@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use JustBetter\AkeneoProducts\Models\Product;
 use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Actions\ActionResponse;
 use Laravel\Nova\Fields\ActionFields;
 
 class RetrieveAction extends Action
@@ -22,13 +23,13 @@ class RetrieveAction extends Action
 
     public $confirmButtonText = 'Retrieve';
 
-    public function handle(ActionFields $fields, Collection $models): array
+    public function handle(ActionFields $fields, Collection $models): ActionResponse
     {
         $models->each(function (Product $product): void {
             $product->retrieve = true;
             $product->save();
         });
 
-        return Action::message(__('Marked!'));
+        return ActionResponse::message(__('Marked!'));
     }
 }

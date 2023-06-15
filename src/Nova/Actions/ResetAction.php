@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use JustBetter\AkeneoProducts\Models\Product;
 use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Actions\ActionResponse;
 use Laravel\Nova\Fields\ActionFields;
 
 class ResetAction extends Action
@@ -22,7 +23,7 @@ class ResetAction extends Action
 
     public $confirmButtonText = 'Reset';
 
-    public function handle(ActionFields $fields, Collection $models): array
+    public function handle(ActionFields $fields, Collection $models): ActionResponse
     {
         $models->each(function (Product $product): void {
             $product->synchronize = true;
@@ -33,6 +34,6 @@ class ResetAction extends Action
             $product->save();
         });
 
-        return Action::message(__('Reset!'));
+        return ActionResponse::message(__('Reset!'));
     }
 }

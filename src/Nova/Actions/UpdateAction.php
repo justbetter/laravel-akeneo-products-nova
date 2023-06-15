@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use JustBetter\AkeneoProducts\Models\Product;
 use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Actions\ActionResponse;
 use Laravel\Nova\Fields\ActionFields;
 
 class UpdateAction extends Action
@@ -22,7 +23,7 @@ class UpdateAction extends Action
 
     public $confirmButtonText = 'Update';
 
-    public function handle(ActionFields $fields, Collection $models): array
+    public function handle(ActionFields $fields, Collection $models): ActionResponse
     {
         $models->each(function (Product $product): void {
             $product->retrieve = false;
@@ -30,6 +31,6 @@ class UpdateAction extends Action
             $product->save();
         });
 
-        return Action::message(__('Marked!'));
+        return ActionResponse::message(__('Marked!'));
     }
 }
