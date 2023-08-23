@@ -1,6 +1,7 @@
 <?php
 
 use JustBetter\AkeneoProductsNova\Nova\MappingResource;
+use JustBetter\AkeneoProductsNova\Nova\ProductModelResource;
 use JustBetter\AkeneoProductsNova\Nova\ProductResource;
 
 return [
@@ -9,6 +10,7 @@ return [
     'resources' => [
         MappingResource::class,
         ProductResource::class,
+        ProductModelResource::class,
     ],
 
 ];
