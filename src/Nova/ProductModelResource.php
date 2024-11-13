@@ -2,11 +2,13 @@
 
 namespace JustBetter\AkeneoProductsNova\Nova;
 
+use Bolechen\NovaActivitylog\Resources\Activitylog;
 use Illuminate\Http\Request;
 use JustBetter\AkeneoProducts\Models\ProductModel;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
@@ -61,6 +63,8 @@ class ProductModelResource extends Resource
             DateTime::make(__('Updated At'), 'modified_at')
                 ->help(__('Last date the product model has been updated.'))
                 ->sortable(),
+
+            MorphMany::make(__('Activity'), 'activities', Activitylog::class),
         ];
     }
 
@@ -79,6 +83,13 @@ class ProductModelResource extends Resource
             Actions\ProductModel\RetrieveAction::make(),
             Actions\ProductModel\UpdateAction::make(),
             Actions\ProductModel\ResetAction::make(),
+        ];
+    }
+
+    public function lenses(NovaRequest $request): array
+    {
+        return [
+            Lenses\ProductModelLastErrorsLens::make(),
         ];
     }
 
