@@ -82,6 +82,6 @@ class ProductModelLastErrorsLens extends Lens
 
     public function uriKey(): string
     {
-        return 'akeneo-productmodels-last-errors';
+        return 'akeneo-product-models-last-errors';
     }
 }
