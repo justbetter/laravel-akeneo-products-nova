@@ -27,6 +27,7 @@ class RetrieveAction extends Action
     {
         $models->each(function (Product $product): void {
             $product->retrieve = true;
+            $product->update = false;
             $product->save();
         });
 
