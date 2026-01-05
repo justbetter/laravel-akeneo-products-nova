@@ -85,7 +85,7 @@ class ProductResource extends Resource
     {
         return [
             Actions\Product\RetrieveAction::make(),
-            Actions\Product\RetrieveSku::make(),
+            Actions\Product\RetrieveByIdentifier::make(),
             Actions\Product\UpdateAction::make(),
             Actions\Product\ResetAction::make(),
         ];
