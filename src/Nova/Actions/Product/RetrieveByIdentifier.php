@@ -32,7 +32,7 @@ class RetrieveByIdentifier extends Action
             return ActionResponse::danger(__('No identifiers provided.'));
         }
 
-        $identifiers->each(static function ($identifier): void {
+        $identifiers->each(function (string $identifier): void {
             RetrieveProductJob::dispatch($identifier);
         });
 
@@ -48,6 +48,7 @@ class RetrieveByIdentifier extends Action
         return [
             Textarea::make(__('Identifiers'), 'identifiers')
                 ->required()
+                ->rules(['required'])
                 ->help(__('Enter one identifier per line.')),
         ];
     }
