@@ -7,8 +7,7 @@ use JustBetter\AkeneoProducts\Jobs\Product\RetrieveProductJob;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\ActionResponse;
 use Laravel\Nova\Fields\ActionFields;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class RetrieveByIdentifier extends Action
@@ -21,34 +20,35 @@ class RetrieveByIdentifier extends Action
 
     public function handle(ActionFields $fields, Collection $models): ActionResponse
     {
-        $identifier = $fields->get('identifier');
-        $csv = $fields->get('csv', false);
+        $rawIdentifiers = (string) $fields->get('identifiers', '');
 
-        if ($csv) {
-            $identifiers = array_map('trim', explode(',', $identifier));
+        $identifiers = collect(explode(PHP_EOL, $rawIdentifiers))
+            ->map(fn (string $identifier): string => trim($identifier))
+            ->filter()
+            ->unique()
+            ->values();
 
-            foreach ($identifiers as $identifier) {
-                if (! empty($identifier)) {
-                    RetrieveProductJob::dispatch($identifier);
-                }
-            }
-
-            return ActionResponse::message(__('Retrieving :count products', ['count' => count($identifiers)]));
+        if ($identifiers->isEmpty()) {
+            return ActionResponse::danger(__('No identifiers provided.'));
         }
 
-        RetrieveProductJob::dispatch($identifier);
+        $identifiers->each(static function ($identifier): void {
+            RetrieveProductJob::dispatch($identifier);
+        });
 
-        return ActionResponse::message(__('Retrieving :identifier', ['identifier' => $identifier]));
+        if ($identifiers->count() === 1) {
+            return ActionResponse::message(__('Retrieving :identifier', ['identifier' => $identifiers->first()]));
+        }
+
+        return ActionResponse::message(__('Retrieving :count products', ['count' => $identifiers->count()]));
     }
 
     public function fields(NovaRequest $request): array
     {
         return [
-            Text::make(__('Identifier'), 'identifier')
-                ->required(),
-
-            Boolean::make(__('CSV'), 'csv')
-                ->help(__('Check this if you are providing a comma-separated list of identifiers. i.e.: identifier1,identifier2')),
+            Textarea::make(__('Identifiers'), 'identifiers')
+                ->required()
+                ->help(__('Enter one identifier per line.')),
         ];
     }
 }
