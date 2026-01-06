@@ -1,6 +1,15 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.2.0...main)
+[Unreleased changes](https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.2.1...main)
+## [2.2.1](https://github.com/justbetter/laravel-akeneo-products-nova/releases/tag/2.2.1) - 2026-01-06
+
+### What's Changed
+* Adjust workflows by @VincentBean in https://github.com/justbetter/laravel-akeneo-products-nova/pull/4
+* Add action to manually retrieve product by SKU by @VincentBean in https://github.com/justbetter/laravel-akeneo-products-nova/pull/5
+
+
+**Full Changelog**: https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.2.0...2.2.1
+
 ## [2.2.0](https://github.com/justbetter/laravel-akeneo-products-nova/releases/tag/2.2.0) - 2025-02-17
 
 ### What's Changed
