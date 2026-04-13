@@ -1,6 +1,14 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.2.1...main)
+[Unreleased changes](https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.3.0...main)
+## [2.3.0](https://github.com/justbetter/laravel-akeneo-products-nova/releases/tag/2.3.0) - 2026-04-13
+
+### What's Changed
+* Laravel 13 support by @VincentBean in https://github.com/justbetter/laravel-akeneo-products-nova/pull/6
+
+
+**Full Changelog**: https://github.com/justbetter/laravel-akeneo-products-nova/compare/2.2.1...2.3.0
+
 ## [2.2.1](https://github.com/justbetter/laravel-akeneo-products-nova/releases/tag/2.2.1) - 2026-01-06
 
 ### What's Changed
