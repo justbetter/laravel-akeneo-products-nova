@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova\Actions\Product;
 
 use Illuminate\Support\Collection;
@@ -43,6 +45,7 @@ class RetrieveByIdentifier extends Action
         return ActionResponse::message(__('Retrieving :count products', ['count' => $identifiers->count()]));
     }
 
+    #[\Override]
     public function fields(NovaRequest $request): array
     {
         return [

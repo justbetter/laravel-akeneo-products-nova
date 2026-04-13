@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova;
 
 use Bolechen\NovaActivitylog\Resources\Activitylog;
@@ -26,11 +28,13 @@ class ProductResource extends Resource
         'identifier',
     ];
 
+    #[\Override]
     public static function label(): string
     {
         return __('Products');
     }
 
+    #[\Override]
     public static function uriKey(): string
     {
         return 'akeneo-products-products';
@@ -72,6 +76,7 @@ class ProductResource extends Resource
         ];
     }
 
+    #[\Override]
     public function filters(NovaRequest $request): array
     {
         return [
@@ -81,6 +86,7 @@ class ProductResource extends Resource
         ];
     }
 
+    #[\Override]
     public function actions(NovaRequest $request): array
     {
         return [
@@ -91,6 +97,7 @@ class ProductResource extends Resource
         ];
     }
 
+    #[\Override]
     public function lenses(NovaRequest $request): array
     {
         return [
@@ -98,16 +105,19 @@ class ProductResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function authorizedToCreate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToUpdate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToReplicate(Request $request): bool
     {
         return false;

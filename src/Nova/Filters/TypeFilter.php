@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -17,6 +19,7 @@ class TypeFilter extends Filter
         return $query->where('type', '=', $value);
     }
 
+    #[\Override]
     public function options(NovaRequest $request): array
     {
         return collect(MappingType::cases())

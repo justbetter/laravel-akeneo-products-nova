@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova\Actions\ProductModel;
 
 use Illuminate\Bus\Queueable;

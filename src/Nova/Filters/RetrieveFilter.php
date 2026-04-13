@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +18,7 @@ class RetrieveFilter extends Filter
         return $query->where('retrieve', '=', $value);
     }
 
+    #[\Override]
     public function options(NovaRequest $request): array
     {
         return [
