@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova;
 
 use JustBetter\AkeneoProducts\Enums\MappingType;
@@ -23,11 +25,13 @@ class MappingResource extends Resource
         'destination',
     ];
 
+    #[\Override]
     public static function label(): string
     {
         return 'Mappings';
     }
 
+    #[\Override]
     public static function uriKey(): string
     {
         return 'akeneo-products-mappings';
@@ -58,6 +62,7 @@ class MappingResource extends Resource
         ];
     }
 
+    #[\Override]
     public function filters(NovaRequest $request): array
     {
         return [

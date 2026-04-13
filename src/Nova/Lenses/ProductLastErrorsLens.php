@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\AkeneoProductsNova\Nova\Lenses;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
@@ -19,6 +21,7 @@ use Laravel\Nova\Lenses\Lens;
 
 class ProductLastErrorsLens extends Lens
 {
+    #[\Override]
     public function name(): string
     {
         return __('Last Errors');
@@ -28,12 +31,12 @@ class ProductLastErrorsLens extends Lens
     {
         return $request->withOrdering($request->withFilters(
             $query->select(self::columns())
-                ->join('activity_log', function (JoinClause $join) {
+                ->join('activity_log', function (JoinClause $join): void {
                     $join
                         ->on('activity_log.subject_id', '=', 'akeneo_products.id')
                         ->where('log_name', '=', 'error')
                         ->where('subject_type', '=', Product::class)
-                        ->where('activity_log.id', '=', function (Builder $builder) {
+                        ->where('activity_log.id', '=', function (Builder $builder): void {
                             $builder
                                 ->selectRaw('MAX(id)')
                                 ->from('activity_log')
@@ -72,6 +75,7 @@ class ProductLastErrorsLens extends Lens
         ];
     }
 
+    #[\Override]
     public function filters(NovaRequest $request): array
     {
         return [
@@ -81,6 +85,7 @@ class ProductLastErrorsLens extends Lens
         ];
     }
 
+    #[\Override]
     public function uriKey(): string
     {
         return 'akeneo-products-last-errors';
